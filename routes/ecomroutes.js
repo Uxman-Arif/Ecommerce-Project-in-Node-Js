@@ -1,8 +1,8 @@
 const express = require('express');
-const { index, addprod } = require('../controllers/ecomfncs');
+const { index, addprod, upload } = require('../controllers/ecomfncs');
 const ecomroute = express.Router();
 
 ecomroute.get('/', index);
-ecomroute.get('/add', addprod);
+ecomroute.get('/add', addprod).post('/add', upload.single('prodImg'), addprod);
 
 module.exports = ecomroute;

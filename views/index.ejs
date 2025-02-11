@@ -1,9 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products</title>
+    <link rel="stylesheet" href="/path/to/bootstrap.css"> <!-- Ensure Bootstrap is linked -->
+</head>
+<body>
 
-    
+    <!-- Navigation -->
     <%- include('shorts/nav') %>
-    
-    <h1>The Home page of Ecommerce website</h1>
+
+    <div class="container mt-4">
+        <h1 class="text-center mb-4">Products</h1>
+
+        <div class="row justify-content-center">
+            <% prods.forEach(prod => { %>
+                <div class="col-md-4 mb-4">
+                    <div class="card" style="width: 18rem;">
+                        <img src="/uploads/<%= prod.prodImg %>" class="card-img-top" alt="Product Image">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <strong>Name: </strong> <%= prod.name %>
+                            </h5>
+                            <p class="card-text">
+                                <strong>Description: </strong> <%= prod.description %>
+                            </p>
+                            <span class="card-text">
+                                <strong>Price: </strong> <%= prod.price %>
+                            </span><br>
+                            <span class="card-text">
+                                <strong>Available Stock: </strong> <%= prod.stk_available %>
+                            </span>
+                            <a href="#" class="btn btn-primary mt-2">Go somewhere</a>
+                        </div>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS (Optional) -->
+    <script src="/path/to/bootstrap.js"></script>
+
 </body>
 </html>

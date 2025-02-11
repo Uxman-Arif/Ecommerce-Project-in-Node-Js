@@ -27,6 +27,7 @@ app.use((req, res, next) => {
 app.use(cookie());
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use(express.urlencoded({extended:false}));
+app.use(express.json())
 app.use('/user', route);
 app.use('/ecom', verifyauth, ecomroute);
 

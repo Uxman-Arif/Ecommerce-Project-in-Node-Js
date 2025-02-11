@@ -1,6 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-<%- include('shorts/nav') %>
-    <h1>Here you can add prods</h1>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Product</title>
+    <link rel="stylesheet" href="/path/to/bootstrap.css"> <!-- Ensure Bootstrap is linked -->
+</head>
+<body>
+
+    <!-- Navigation -->
+    <%- include('shorts/nav') %>
+
+    <div class="container mt-4">
+        <h1 class="text-center mb-4">Add a New Product</h1>
+
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <form action="/add" method="post" enctype="multipart/form-data" class="p-4 border rounded shadow-sm bg-light">
+                    <div class="mb-3">
+                        <label for="name" class="form-label"><strong>Product Name:</strong></label>
+                        <input type="text" name="name" id="name" class="form-control" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="description" class="form-label"><strong>Product Description:</strong></label>
+                        <input type="text" name="description" id="description" class="form-control" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="price" class="form-label"><strong>Product Price:</strong></label>
+                        <input type="number" name="price" id="price" class="form-control" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="stk_available" class="form-label"><strong>Stock Available:</strong></label>
+                        <input type="number" name="stk_available" id="stk_available" class="form-control" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="prodImg" class="form-label"><strong>Product Image:</strong></label>
+                        <input type="file" name="prodImg" id="prodImg" class="form-control" required>
+                    </div>
+
+                    <button class="btn btn-primary w-100" type="submit">Add Product!</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS (Optional) -->
+    <script src="/path/to/bootstrap.js"></script>
+
 </body>
 </html>

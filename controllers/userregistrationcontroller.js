@@ -10,7 +10,7 @@ async function signin(req, res) {
             try {
                 const passwordverify = await usermodel.matchPassword(data.username, data.password);
                 if (passwordverify){
-                    const token = authuser(data.username, data.password);
+                    const token = authuser(loginuser);
                     res.cookie('token', token);
                 }
                 return res.redirect('/ecom');
