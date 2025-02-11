@@ -18,7 +18,7 @@ async function signin(req, res) {
                 return res.render('signin', { error: error.message });
             }
         }else{
-            return res.json({err:'wrong username or password'});
+            return res.render('signin', {error:'Invalid Username!'})
         }
     }
     return res.render('signin');
@@ -27,6 +27,14 @@ async function signin(req, res) {
 async function signup(req, res) {
     data = req.body;
     if (req.method=='POST'){
+        const checkuserexist = await usermodel.findOne({username:data.username})
+        if (checkuserexist){
+            return res.render('signup', {error:'This username is already taken. Try another!'});
+        };
+        const checkemailexist = await usermodel.findOne({email:data.email})
+        if (checkemailexist){
+            return res.render('signup', {error:'This Email is already registered. Try another!'});
+        };
         await usermodel.create({username:data.username, email:data.email, role:data.role, password:data.password})
     }
     return res.render('signup');

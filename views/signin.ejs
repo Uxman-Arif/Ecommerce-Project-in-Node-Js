@@ -26,21 +26,13 @@
                             <button type="submit" class="btn btn-primary w-100">Sign In</button>
                         </form>
                         <% if (locals.error) { %>
-                         <div class="alert alert-danger">
+                         <div class="alert alert-danger my-1">
                             <%= error %>
                          </div>
                         <% } %>
-                        <% if (locals.error_msg) { %>
-                            <div class="alert alert-danger">
-                                <%= error_msg %>
-                            </div>
-                           <% } %>
                         <p class="text-center mt-3">
                             Not yet account <a href="/user/signup" class="text-decoration-none">Signup</a>
                         </p>
-                        <% if (locals.error_msg) { %>
-                         <%= error_msg %>
-                        <% } %>
                     </div>
                 </div>
             </div>

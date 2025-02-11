@@ -36,6 +36,11 @@
                             </div>
                             <button type="submit" class="btn btn-primary w-100">Sign Up</button>
                         </form>
+                        <% if (locals.error) { %>
+                            <div class="alert alert-danger my-1">
+                                <%= error %>
+                            </div>
+                        <% } %>
                         <p class="text-center mt-3">
                             Already have an account? <a href="/user/signin" class="text-decoration-none">Sign In</a>
                         </p>

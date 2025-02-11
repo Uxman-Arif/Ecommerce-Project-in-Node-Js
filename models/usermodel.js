@@ -43,7 +43,6 @@ userSchema.static('matchPassword', async function(username, password) {
     const salt = user.salt;
     const storedPassword = user.password;
     const hashedPassword = createHmac('sha256', salt).update(password).digest('hex');
-    console.log(hashedPassword, storedPassword);
     if (hashedPassword.toString() !== storedPassword.toString()) {
         throw new Error('Incorrect Password');
     }
