@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= prod.name %></title>
+    <link rel="stylesheet" href="/path/to/bootstrap.css"> <!-- Ensure Bootstrap is linked -->
+</head>
+<body>
+
+    <!-- Navigation -->
+    <%- include('shorts/nav') %>
+
+    <div class="container mt-4">
+        <h1 class="text-center mb-4 fw-bold text-primary"><%= prod.name %></h1><hr>
+
+        <div class="row justify-content-center">
+            <div class="col-6">
+                <img src="/uploads/<%= prod.prodImg %>" class="img img-fluid" alt="Product Image">
+            </div>
+            <div class="col-6">
+
+                <h5 class="card-title">
+                    <strong>Name: </strong> <%= prod.name %>
+                </h5>
+                <p class="card-text">
+                    <strong>Description: </strong> <%= prod.description %>
+                </p>
+                <span class="card-text">
+                    <strong>Price: </strong> <%= prod.price %>
+                </span><br>
+                <span class="card-text">
+                    <strong>Available Stock: </strong> <%= prod.stk_available %>
+                </span><br>
+                <a href="#" class="btn btn-primary mt-2">Add to Cart!</a>
+            </div>
+                        
+        </div>
+    </div>
+
+    <!-- Bootstrap JS (Optional) -->
+    <script src="/path/to/bootstrap.js"></script>
+
+</body>
+</html>

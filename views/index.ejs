@@ -12,7 +12,7 @@
     <%- include('shorts/nav') %>
 
     <div class="container mt-4">
-        <h1 class="text-center mb-4">Products</h1>
+        <h1 class="text-center mb-4 fw-bold text-primary">All Products</h1>
 
         <div class="row justify-content-center">
             <% prods.forEach(prod => { %>
@@ -24,15 +24,15 @@
                                 <strong>Name: </strong> <%= prod.name %>
                             </h5>
                             <p class="card-text">
-                                <strong>Description: </strong> <%= prod.description %>
+                                <strong>Description: </strong> <%= prod.description.length > 50 ? prod.description.substring(0, 50) + '...' : prod.description %>
                             </p>
                             <span class="card-text">
                                 <strong>Price: </strong> <%= prod.price %>
                             </span><br>
                             <span class="card-text">
                                 <strong>Available Stock: </strong> <%= prod.stk_available %>
-                            </span>
-                            <a href="#" class="btn btn-primary mt-2">Go somewhere</a>
+                            </span><br>
+                            <a href="/ecom/<%= prod._id %>" class="btn btn-primary mt-2 w-100">Visit</a>
                         </div>
                     </div>
                 </div>

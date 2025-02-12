@@ -27,8 +27,15 @@ async function addprod(req, res) {
     return res.render('addprod');
 }
 
+async function viewprod(req, res) {
+    const id = req.params.id;
+    const prod = await prodModel.findOne({_id:id});
+    return res.render('viewprod', {prod:prod});
+}
+
 module.exports = {
     index,
     addprod,
     upload,
+    viewprod,
 };
