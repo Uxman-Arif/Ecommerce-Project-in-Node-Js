@@ -1,6 +1,6 @@
 const multer = require('multer');
-const { prodModel, reviewModel } = require('../models/prodmodel');
-const { userModel } = require('../models/usermodel');
+const { prodModel, reviewModel, cartitemModel, cartModel } = require('../models/prodmodel');
+const { json } = require('express/lib/response');
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -35,7 +35,17 @@ async function viewprod(req, res) {
     if (req.method == 'POST'){
         data = req.body;
         if (data.hidden){
-            console.log(data.hidden);
+            console.log(data.hidden, data.quantity);
+            const usercart = await cartModel.findOne({owner:req.user.id});
+            const createcartitem = await cartitemModel.create({product: data.hidden, quantity: data.quantity, owner:req.user.id});
+            if(usercart){
+                usercart.items.push(createcartitem._id);
+                await usercart.save();
+            }else{
+                const createnewcart = await cartModel.create({items:[], owner:req.user.id});
+                createnewcart.items.push(createcartitem._id);
+                await createnewcart.save();
+            }
             
         }else{
             console.log(data.review);

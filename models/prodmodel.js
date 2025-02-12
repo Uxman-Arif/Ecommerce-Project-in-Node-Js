@@ -72,11 +72,13 @@ const cartitemsSchema = mongoose.Schema({
 const cartitemModel = mongoose.model('cartitems', cartitemsSchema);
 
 const cartSchema = mongoose.Schema({
-    items: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'cartitems',
-        required: true,
-    },
+    items: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "cartitems",
+            required: true,
+        }
+    ],
     owner: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'userregister',
