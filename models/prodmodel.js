@@ -23,7 +23,7 @@ const prodSchema = mongoose.Schema({
         required: true,
     },
     owner: {
-        type: mongoose.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'userregister',
     }
 }, {timestamps:true});
@@ -35,23 +35,59 @@ const reviewSchema = mongoose.Schema({
         type: String,
         required: true,
     },
-    tiem: {
+    time: {
         type: Date,
         default: Date.now,
     },
     owner: {
-        type: mongoose.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'userregister',
     },
     product: {
-        type: mongoose.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'product',
     },
 });
 
 const reviewModel = mongoose.model('prodreviews', reviewSchema);
 
+
+const cartitemsSchema = mongoose.Schema({
+    product: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'product',
+        required: true,
+    },
+    quantity: {
+        type: String,
+        required: true,
+    },
+    owner: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'userregister',
+        required: true,
+    }
+})
+
+const cartitemModel = mongoose.model('cartitems', cartitemsSchema);
+
+const cartSchema = mongoose.Schema({
+    items: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'cartitems',
+        required: true,
+    },
+    owner: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'userregister',
+        required: true,
+    }
+});
+
+const cartModel = mongoose.model('cart', cartSchema);
 module.exports = {
     prodModel,
     reviewModel,
+    cartitemModel,
+    cartModel,
 }

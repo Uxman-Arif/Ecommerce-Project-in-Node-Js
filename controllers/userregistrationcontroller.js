@@ -40,7 +40,13 @@ async function signup(req, res) {
     return res.render('signup');
 }
 
+function signout(req, res) {
+    res.clearCookie('token');
+    return res.redirect('/user/signin')
+}
+
 module.exports = {
     signin,
     signup,
+    signout,
 }

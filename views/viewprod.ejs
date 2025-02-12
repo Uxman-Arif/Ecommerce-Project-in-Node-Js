@@ -4,37 +4,73 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= prod.name %></title>
-    <link rel="stylesheet" href="/path/to/bootstrap.css"> <!-- Ensure Bootstrap is linked -->
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/path/to/bootstrap.css"> 
 </head>
 <body>
 
-    <!-- Navigation -->
+    <!-- Navigation Bar -->
     <%- include('shorts/nav') %>
 
     <div class="container mt-4">
-        <h1 class="text-center mb-4 fw-bold text-primary"><%= prod.name %></h1><hr>
+        <!-- Product Title -->
+        <h1 class="text-center mb-4 fw-bold text-primary"><%= prod.name %></h1>
+        <hr>
 
+        <!-- Product Details Section -->
         <div class="row justify-content-center">
-            <div class="col-6">
-                <img src="/uploads/<%= prod.prodImg %>" class="img img-fluid" alt="Product Image">
+            <div class="col-md-6">
+                <img src="/uploads/<%= prod.prodImg %>" class="img-fluid rounded shadow" alt="Product Image">
             </div>
-            <div class="col-6">
-
-                <h5 class="card-title">
+            <div class="col-md-6">
+                <h5 class="fw-bold">
                     <strong>Name: </strong> <%= prod.name %>
                 </h5>
-                <p class="card-text">
+                <p class="text-muted">
                     <strong>Description: </strong> <%= prod.description %>
                 </p>
-                <span class="card-text">
-                    <strong>Price: </strong> <%= prod.price %>
-                </span><br>
-                <span class="card-text">
+                <p>
+                    <strong>Price: </strong> $<%= prod.price %>
+                </p>
+                <p>
                     <strong>Available Stock: </strong> <%= prod.stk_available %>
-                </span><br>
-                <a href="#" class="btn btn-primary mt-2">Add to Cart!</a>
+                </p>
+                <form action="" method="post">
+                    <input type="hidden" name="hidden" id="" value="<%= prod._id %>">
+                    <button class="btn btn-primary" type="submit">Add to Cart!</button>
+                </form>
             </div>
-                        
+        </div>
+        <hr>
+
+        <!-- Review Section -->
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <!-- Review Form -->
+                <form action="" method="post" class="mb-4">
+                    <label for="review" class="fs-5 fw-bold">Share your thoughts here...</label>
+                    <textarea name="review" class="form-control mb-2" id="review" rows="3"></textarea>
+                    <button class="btn btn-primary w-100" type="submit">Post Review!</button>
+                </form>
+
+                <!-- Display Reviews -->
+                <% if (locals.reviews) { %>
+                    <% reviews.forEach(review => { %>
+                        <div class="row mb-3">
+                            <div class="col-2 d-flex justify-content-center">
+                                <img src="/uploads/profile.jpg" alt="User Profile" class="img-fluid rounded-circle" style="width: 70px; height: 70px;">
+                            </div>
+                            <div class="col-10">
+                                <h5 class="mb-1"><%= review.owner.username %></h5>
+                                <small class="text-muted"><%= new Date(review.time).toLocaleString() %></small>
+                                <p class="mt-2"><%= review.review %></p>
+                            </div>
+                        </div>
+                        <hr>
+                    <% }) %>
+                <% } %>
+            </div>
         </div>
     </div>
 

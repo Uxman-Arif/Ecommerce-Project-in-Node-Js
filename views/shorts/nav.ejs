@@ -11,5 +11,9 @@
         <a class="nav-link fw-bold" aria-current="page" href="/ecom">Ecommerce</a>
         <a class="nav-link active" href="/ecom/add">Add Product</a>
         <a class="nav-link" href="#">Link</a>
-        <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+        <% if (locals.user) { %>
+            <a class="nav-link" href="/user/signout">Logout</a>
+            <% } else { %>
+            <a class="nav-link" href="/user/signin">Signin</a> 
+        <% } %>
     </nav>

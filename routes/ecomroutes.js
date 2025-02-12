@@ -4,6 +4,6 @@ const ecomroute = express.Router();
 
 ecomroute.get('/', index);
 ecomroute.get('/add', addprod).post('/add', upload.single('prodImg'), addprod);
-ecomroute.get('/:id', viewprod);
+ecomroute.get('/:id', viewprod).post('/:id', viewprod);
 
 module.exports = ecomroute;
