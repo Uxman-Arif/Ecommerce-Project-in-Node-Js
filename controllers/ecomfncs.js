@@ -22,7 +22,6 @@ async function index(req, res) {
 async function addprod(req, res) {
     if (req.method=='POST'){
         data = req.body;
-        console.log(data.name, data.description, data.price, data.stk_available, req.file.filename);
         await prodModel.create({name:data.name, description:data.description, price:data.price, stk_available:data.stk_available, prodImg:req.file.filename})
     };
     return res.render('addprod', {user:req.user});
@@ -35,7 +34,6 @@ async function viewprod(req, res) {
     if (req.method == 'POST'){
         data = req.body;
         if (data.hidden){
-            console.log(data.hidden, data.quantity);
             const usercart = await cartModel.findOne({owner:req.user.id});
             const createcartitem = await cartitemModel.create({product: data.hidden, quantity: data.quantity, owner:req.user.id});
             if(usercart){
@@ -48,11 +46,15 @@ async function viewprod(req, res) {
             }
             
         }else{
-            console.log(data.review);
             await reviewModel.create({review:data.review, owner: req.user.id, product:prod._id});
         }
     }
     return res.render('viewprod', {prod:prod, reviews:reviews, user:req.user});
+};
+
+async function cart(req, res) {
+    const cartitems = await cartitemModel.find({owner:req.user.id}).populate('product');
+    return res.render('cart', {user:req.user, cartitems:cartitems});
 }
 
 module.exports = {
@@ -60,4 +62,5 @@ module.exports = {
     addprod,
     upload,
     viewprod,
+    cart,
 };
